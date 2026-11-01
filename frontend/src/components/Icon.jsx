@@ -142,6 +142,7 @@ const P = {
 
   /* ---- v1.3.11: one icon per concept (the Settings redesign names them) ---- */
   // sound, not "notification": a speaker with two waves
+  mic: <><rect x="9.2" y="3.6" width="5.6" height="10.4" rx="2.8" /><path d="M6.2 11.2a5.8 5.8 0 0 0 11.6 0M12 17v3.4M9 20.4h6" /></>,
   speaker: <><path d="M4.6 9.4h3.2l4.6-3.8v12.8l-4.6-3.8H4.6Z" /><path d="M15.6 9.2a4 4 0 0 1 0 5.6M18 6.8a7.4 7.4 0 0 1 0 10.4" /></>,
   // a phone with buzz marks on both sides
   vibrate: <><rect x="8" y="4.2" width="8" height="15.6" rx="2" /><path d="M4.8 9v6M19.2 9v6M2.6 10.6v2.8M21.4 10.6v2.8" /></>,

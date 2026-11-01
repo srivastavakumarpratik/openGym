@@ -366,6 +366,9 @@ export function drainWatchEvents () {
   return draining
 }
 
+/** The workout screen's actions while it is mounted (the voice coach ticks sets through them too). */
+export const boundWatchActions = () => handlers
+
 /** The workout screen hands over its own actions while it is mounted. Returns the unbind. */
 export function bindWatchActions (h) {
   handlers = h
