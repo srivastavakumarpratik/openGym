@@ -19,8 +19,6 @@ import { api, beacon } from '../lib/api.js'
 import { pyramidRestFor, maxRecordAt, isPyramid, pyramidLabel } from '../lib/pyramid.js'
 import { insertionIndexAfterCurrentUnit, nextUnfinishedUnit, setProgressHighWater, supersetFlowStep, restAfterSet, restOnRecheck, restSecFor, warmupRestSecFor, sideRestFor, ownSetRest, ownExerciseRest, stepUnitIndex, advanceAfterTimedRest } from '../lib/supersetFlow.js'
 import Media from '../components/Media.jsx'
-import VoiceCoach from './VoiceCoach.jsx'
-import { GH_BUILD } from '../lib/gh-sync.js'
 import WorkoutScrollAnchor from '../components/WorkoutScrollAnchor.jsx'
 import WorkoutChips from '../components/WorkoutChips.jsx'
 import { supersetMeta } from '../lib/superset-meta.js'
@@ -2347,13 +2345,5 @@ export function _resetHintQuiet() { lastTouchAt = 0 }
 
 export default function Workout() {
   const active = useStore(s => s.S.active)
-  const [voice, setVoice] = useState(false)
-  if (!active) return <StartChooser />
-  // This fork: the voice coach rides on top of the session, ticking sets through its actions.
-  return <>
-    <ActiveWorkout />
-    {GH_BUILD && !active.backfill && !active.editingWorkoutId && (voice
-      ? <VoiceCoach onClose={() => setVoice(false)} />
-      : <button className="vc-launch" onClick={() => setVoice(true)}><Icon name="mic" />Voice coach</button>)}
-  </>
+  return active ? <ActiveWorkout /> : <StartChooser />
 }
