@@ -1,0 +1,33 @@
+/* Today screen of this fork (views/Today.jsx) */
+.mp-today .mp-card{display:flex;flex-direction:column;gap:6px}
+.mp-today .mp-when{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+.mp-today .mp-title{margin:0;font-size:24px;font-weight:700;letter-spacing:-.02em;color:var(--label)}
+.mp-today .mp-sub{font-weight:600;font-size:16px;margin-bottom:2px}
+.mp-today .mp-run{margin-top:10px;padding-top:12px;border-top:1px solid var(--sep)}
+.mp-today .mp-run .small{margin-top:2px}
+.mp-today .mp-list{display:flex;flex-direction:column}
+.mp-today .mp-row{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-top:1px solid var(--sep)}
+.mp-today .mp-row:first-child{border-top:0}
+.mp-today .mp-tag{flex:0 0 26px;font-size:12px;font-weight:600;color:var(--label-3);font-variant-numeric:tabular-nums}
+.mp-today .mp-name{flex:1;min-width:0}
+.mp-today .mp-dose{flex:0 0 auto;color:var(--label-2);font-size:14px;font-variant-numeric:tabular-nums}
+.mp-today .mp-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.mp-today .mp-day{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border-radius:var(--r-sm);background:none;border:0;color:var(--label);cursor:pointer;font:inherit}
+.mp-today .mp-day.on{background:var(--surface-3)}
+.mp-today .mp-day.now .mp-daynum{color:var(--acc)}
+.mp-today .mp-daynum{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+.mp-today .mp-dots{display:flex;gap:3px;min-height:6px}
+.mp-today .mp-dots i{width:6px;height:6px;border-radius:50%;background:var(--label-4)}
+.mp-today .mp-dots i.on{background:var(--acc)}
+@media (min-width:1100px){
+  .mp-today.narrow{max-width:1040px}
+  .mp-today .mp-title{font-size:30px}
+  .mp-today .mp-row{font-size:18px;padding:9px 0}
+}
+
+/* TV and laptop: a wider workout screen with a large animation (this fork). */
+@media (min-width:1100px){
+  #app .narrow{max-width:960px}
+  .exmedia:not(.compact):not(.mini) img,.exmedia:not(.compact):not(.mini) video{height:min(58vh,640px)}
+}
+.mp-today .mp-more summary{cursor:pointer;padding:4px 0}

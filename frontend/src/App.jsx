@@ -43,6 +43,8 @@ import { useAnimPacksBoot } from './components/Animations.jsx'
 import Login from './views/Login.jsx'
 import GhConnect from './views/GhConnect.jsx'
 import { GH_BUILD } from './lib/gh-sync.js'
+import Today from './views/Today.jsx'
+import GhSettings from './views/GhSettings.jsx'
 import MobileOnboarding from './views/MobileOnboarding.jsx'
 import PermissionSteps from './views/PermissionSteps.jsx'
 import Home from './views/Home.jsx'
@@ -290,7 +292,18 @@ function Shell() {
     </div>
   )
 
-  const view = l => (!authed ? (GH_BUILD ? <GhConnect /> : <Login />) : needsMobileOnboarding ? <MobileOnboarding /> : permSteps ? <PermissionSteps /> : (
+  const view = l => (!authed ? (GH_BUILD ? <GhConnect /> : <Login />) : GH_BUILD ? (
+    // This fork's build: only what the plan needs.
+    <Routes location={l}>
+      <Route path="/home" element={<Today />} />
+      <Route path="/plan" element={<Plan />} />
+      <Route path="/plan/r/:id" element={<RoutineEdit />} />
+      <Route path="/workout" element={<Workout />} />
+      <Route path="/history" element={<History />} />
+      <Route path="/settings" element={<GhSettings />} />
+      <Route path="*" element={<Navigate to="/home" replace />} />
+    </Routes>
+  ) : needsMobileOnboarding ? <MobileOnboarding /> : permSteps ? <PermissionSteps /> : (
     <Routes location={l}>
       <Route path="/home" element={<Home />} />
       {/* Gym check-in — switched off in Settings, the route falls through to the

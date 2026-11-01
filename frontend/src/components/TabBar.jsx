@@ -6,6 +6,7 @@ import { t } from '../lib/i18n.js'
 import Icon from './Icon.jsx'
 import Elapsed from './Elapsed.jsx'
 import { useConnectionTrouble } from './SyncBanner.jsx'
+import { GH_BUILD } from '../lib/gh-sync.js'
 
 // Module scope, not TabBar's render body. Declared inside it, `Tab` was a new function on every
 // render, so React saw a different component type each time and threw the button away and built a
@@ -49,6 +50,19 @@ export default function TabBar({ onStart }) {
     }
     nav('/workout')
   }
+
+  // This fork: Today, Plan, History, and the running session when there is one.
+  if (GH_BUILD) return (
+    <nav id="tabbar">
+      <Tab active={on('home')} icon="house" label="Today" dot={trouble} onClick={() => switchTab('/home')} />
+      <Tab active={on('plan')} icon="calendar" label={t('Plan')} onClick={() => switchTab('/plan')} />
+      {S.active && <button className={'start rec' + (cur === 'workout' ? ' on' : '')} onClick={() => nav('/workout')} aria-label={t('Resume')}>
+        <span className="cir"><Icon name="play" /></span>
+        {running ? <span className="tab-time"><Elapsed start={S.active.start} /></span> : <span>{cur === 'workout' ? t('Workout') : t('Resume')}</span>}
+      </button>}
+      <Tab active={cur === 'history'} icon="chart" label="History" onClick={() => switchTab('/history')} />
+    </nav>
+  )
 
   return (
     <nav id="tabbar">
