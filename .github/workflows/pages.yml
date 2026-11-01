@@ -1,14 +1,11 @@
-# Publishes the browser-only demo to GitHub Pages: https://duartesantos8.github.io/openGym/
+# Publishes this fork to GitHub Pages: https://srivastavakumarpratik.github.io/openGym/
 #
-# Dormant from 2026-08-19 to 2026-09-10 while the GitHub account was suspended; live again since.
-# The same build (same command, Vite's base is './') is also served from the project's own site at
-# https://opengym.ch/demo/, so the demo has two addresses with identical content.
-#
-# Pages serves static files only, so this build has no backend — VITE_DEMO=1 makes the app
-# boot straight into guest mode with a seeded example history (see frontend/src/lib/demo.js).
+# Pages serves static files only, so this build has no openGym server. VITE_GH_SYNC=1 makes the
+# app keep the profile in a private GitHub repository instead (frontend/src/lib/gh-sync.js): each
+# device connects once with a fine-grained token that can only read and write that repository.
 # The exercise stills and animations (180 px) come from catalogue/media and are staged next to
-# the build by scripts/catalogue/stage-media.mjs, so the demo serves them from its own origin.
-name: Deploy demo to GitHub Pages
+# the build by scripts/catalogue/stage-media.mjs, so they are served from this site, unmodified.
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -45,7 +42,8 @@ jobs:
       - run: npm run build
         working-directory: frontend
         env:
-          VITE_DEMO: '1'
+          VITE_GH_SYNC: '1'
+          VITE_GH_REPO: srivastavakumarpratik/opengym-data
       # The 180 px stills and animations from catalogue/media, served next to the demo
       - run: node scripts/catalogue/stage-media.mjs frontend/dist
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0

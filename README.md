@@ -1,3 +1,8 @@
+> **This fork** runs at **https://srivastavakumarpratik.github.io/openGym/** as a personal, non-commercial build.
+> There is no server: the app keeps the workout log in a private GitHub repository (`opengym-data`)
+> and every device connects to it once with a fine-grained token (see `frontend/src/lib/gh-sync.js`).
+> Exercise media © Gym visual, kept unmodified at 180 px under openGym's media terms (NOTICE.md).
+
 <div align="center">
 
 <p>

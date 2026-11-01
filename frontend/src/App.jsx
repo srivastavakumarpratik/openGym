@@ -41,6 +41,8 @@ import { SeasonalLayer } from './components/Seasonal.jsx'
 import { openDeviceLinkRedeem } from './components/Passkeys.jsx'
 import { useAnimPacksBoot } from './components/Animations.jsx'
 import Login from './views/Login.jsx'
+import GhConnect from './views/GhConnect.jsx'
+import { GH_BUILD } from './lib/gh-sync.js'
 import MobileOnboarding from './views/MobileOnboarding.jsx'
 import PermissionSteps from './views/PermissionSteps.jsx'
 import Home from './views/Home.jsx'
@@ -288,7 +290,7 @@ function Shell() {
     </div>
   )
 
-  const view = l => (!authed ? <Login /> : needsMobileOnboarding ? <MobileOnboarding /> : permSteps ? <PermissionSteps /> : (
+  const view = l => (!authed ? (GH_BUILD ? <GhConnect /> : <Login />) : needsMobileOnboarding ? <MobileOnboarding /> : permSteps ? <PermissionSteps /> : (
     <Routes location={l}>
       <Route path="/home" element={<Home />} />
       {/* Gym check-in — switched off in Settings, the route falls through to the
